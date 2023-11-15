@@ -26,11 +26,34 @@
     numberOfMonths: 2,
   });
 </script>
+<div class="fixed inset-0 overflow-hidden">
 <div class="flex-col align-middle justify-center h-screen w-screen">
 <h1 class="h1 text-center font-extrabold text-transparent text-8xl bg-clip-text bg-gradient-to-r from-teal-400 to-cyan-400
 m-12">Veronica's 3rd Home</h1>
- 
-<div class="picker-container">
+
+
+<div class="flex overflow-x-auto snap-type-mandatory h-1/2  object-cover bg-scroll scrollbar-hide">
+  <div class="flex-shrink-0 w-full snap-align-start">
+    <!-- First image -->
+    <img
+      src="https://plus.unsplash.com/premium_photo-1684508638760-72ad80c0055f?q=80&w=3542&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+      alt="unsplash"
+      class="h-full w-full object-cover"
+    />
+  </div>
+
+  <div class="flex-shrink-0 w-full snap-align-start">
+    <!-- Second image -->
+    <img
+      src="https://plus.unsplash.com/premium_photo-1684338795288-097525d127f0?q=80&w=1742&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+      alt="unsplash"
+      class="h-full w-full object-cover"
+    />
+  </div>
+</div>
+
+
+<div class="picker-container fixed bottom-28">
   <div>
     <span use:melt={$label}>Date</span>
     <div use:melt={$field}>
@@ -103,6 +126,7 @@ m-12">Veronica's 3rd Home</h1>
       </div>
     </div>
   {/if}
+</div>
 </div>
 </div>
 <style lang="postcss">
@@ -241,4 +265,14 @@ m-12">Veronica's 3rd Home</h1>
       filter: hue-rotate(360deg);
     }
   }
+
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+}
+
+/* For IE, Edge and Firefox */
+.scrollbar-hide {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+}
 </style>
