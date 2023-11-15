@@ -125,7 +125,7 @@ m-12">Veronica's 3rd Home</h1>
         </div>
       </div>
     </div>
-  {/if}<button class="m-3">Book now</button>
+  {/if}<button class="m-3 text-xl text-gray-800/70 hover:text-gray-900/80 font-semibold">Book now</button>
 
 </div>
 </div>
@@ -224,14 +224,17 @@ m-12">Veronica's 3rd Home</h1>
  
   [data-melt-calendar-cell] {
     @apply flex h-6 w-6 cursor-pointer select-none items-center justify-center rounded-lg p-4 hover:bg-cyan-500/20  focus:ring focus:ring-cyan-400;
+    animation: hueShift 60s infinite linear;
   }
  
   [data-melt-calendar-cell][data-highlighted] {
     @apply bg-cyan-600/20;
+    animation: hueShift 60s infinite linear;
   }
  
   [data-melt-calendar-cell][data-range-highlighted] {
     @apply bg-cyan-600/20;
+    animation: hueShift 60s infinite linear;
   }
  
   [data-melt-calendar-cell][data-disabled] {
@@ -244,6 +247,8 @@ m-12">Veronica's 3rd Home</h1>
  
   [data-melt-calendar-cell][data-selected] {
     @apply bg-cyan-400 text-neutral-950;
+    animation: hueShift 60s infinite linear;
+
   }
  
   [data-melt-calendar-cell][data-outside-visible-months] {
