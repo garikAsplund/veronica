@@ -28,7 +28,7 @@
 </script>
 <div class="fixed inset-0 overflow-hidden">
 <div class="flex-col align-middle justify-center h-screen w-screen">
-<h1 class="h1 text-center font-extrabold text-transparent text-8xl bg-clip-text bg-gradient-to-r from-teal-400 to-cyan-400
+<h1 class="h1 text-center font-extrabold text-transparent lg:text-8xl md:text-6xl text-4xl bg-clip-text bg-gradient-to-r from-teal-400 to-cyan-400
 m-12">Veronica's 3rd Home</h1>
 
 
@@ -53,7 +53,7 @@ m-12">Veronica's 3rd Home</h1>
 </div>
 
 
-<div class="picker-container fixed bottom-28">
+<div class="picker-container fixed bottom-16 scale-110 flex">
   <div>
     <span use:melt={$label}>Date</span>
     <div use:melt={$field}>
@@ -125,9 +125,11 @@ m-12">Veronica's 3rd Home</h1>
         </div>
       </div>
     </div>
-  {/if}
+  {/if}<button class="m-3">Book now</button>
+
 </div>
 </div>
+
 </div>
 <style lang="postcss">
   .picker-container {
@@ -139,7 +141,7 @@ m-12">Veronica's 3rd Home</h1>
   }
  
   [data-melt-popover-content] {
-    @apply z-10 min-w-[320px] rounded-lg bg-neutral-900 shadow-sm;
+    @apply z-10 min-w-[320px] rounded-lg bg-neutral-900/10 shadow-sm;
   }
  
   [data-melt-popover-trigger] {
@@ -155,7 +157,9 @@ m-12">Veronica's 3rd Home</h1>
   }
  
   [data-melt-datefield-field] {
-    @apply mt-1.5 flex w-full min-w-[200px] items-center rounded-lg border border-cyan-400/60 bg-neutral-800/80 p-1.5 text-cyan-400;
+    @apply mt-1.5 flex w-full min-w-[200px] items-center rounded-lg border border-cyan-400/60 bg-neutral-200/40 p-1.5 text-gray-700;
+    animation: hueShift 60s infinite linear;
+
   }
  
   [data-melt-datefield-field][data-invalid] {
@@ -175,7 +179,7 @@ m-12">Veronica's 3rd Home</h1>
   }
  
   [data-melt-calendar] {
-    @apply w-full rounded-lg bg-neutral-800/90 p-3 text-white shadow-sm;
+    @apply w-full rounded-lg bg-white/90 p-3 text-gray-700 shadow-sm;
   }
  
   header {
@@ -251,7 +255,7 @@ m-12">Veronica's 3rd Home</h1>
   }  /* ... other styles ... */
 
   .h1 {
-    @apply text-center font-extrabold text-transparent text-8xl m-12;
+    @apply text-center font-extrabold  text-transparent m-12;
     background-clip: text;
     animation: hueShift 60s infinite linear;
     /* You can adjust the animation duration and other properties as needed */
