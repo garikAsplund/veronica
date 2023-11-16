@@ -4,11 +4,13 @@
 	import { ChevronRight, ChevronLeft, Calendar } from 'lucide-svelte';
 	import { fade } from 'svelte/transition';
 	import { browser } from '$app/environment';
-	import { CalendarDate, today, getLocalTimeZone, parseDate } from '@internationalized/date';
+	import { CalendarDate, today, getLocalTimeZone, parseDate, type DateValue } from '@internationalized/date';
 	import type { PageData } from '../../routes/$types';
+	import { writable } from 'svelte/store';
 
 	export let data: PageData;
 	const bookedDates: string[] = [];
+	export const lengthOfStay = writable(0);
 
 	data.booked?.forEach((bookedEntry) => {
 		let bookedDate = parseDate(bookedEntry.start);
@@ -60,6 +62,32 @@
 	function switchBookButton({ curr, next }) {
 		bookButtonEnabled = next.end && next.start ? true : false;
 		return next;
+	}
+
+	function calculateLengthOfStay(startDate: CalendarDate, endDate: CalendarDate): number {
+		let lengthOfStay: number = 0;
+
+		while (startDate.compare(endDate) <= 0) {
+			lengthOfStay++;
+			startDate = startDate.add({ days: 1 });
+		}
+
+		return lengthOfStay;
+	}
+
+	async function checkout() {
+		// dbController.postDates($value.start?.toString(), $value.end?.toString());
+		$lengthOfStay = calculateLengthOfStay($value.start, $value.end);
+	
+		const data = await fetch("/checkout", {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json",
+			},
+			body: JSON.stringify({ items: $lengthOfStay })
+		}).then((data) => data.json());
+
+		window.location.replace(data.url);
 	}
 </script>
 
@@ -141,7 +169,7 @@
 			<button
 				class="m-3 text-xl text-gray-800/80 hover:text-gray-900/80 font-semibold"
 				disabled={!bookButtonEnabled}
-				on:click={() => dbController.postDates($value.start?.toString(), $value.end?.toString())}
+				on:click={checkout}
 			>
 				Book now
 			</button>
