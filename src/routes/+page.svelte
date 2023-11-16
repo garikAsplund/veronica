@@ -3,6 +3,7 @@
   import { ChevronRight, ChevronLeft, Calendar } from 'lucide-svelte';
   import { fade } from 'svelte/transition';
   import { browser } from '$app/environment';
+  import { CalendarDate, today, getLocalTimeZone } from '@internationalized/date'
 
   let mobileCalendar;
 
@@ -11,6 +12,9 @@
       mobileCalendar = window.innerWidth < 500 ? 1 : 2;
       document.addEventListener('wheel', handleScroll);
     }
+
+    const todaysDate = today(getLocalTimeZone());
+    console.log(todaysDate);
   
     const {
     elements: {
@@ -30,6 +34,8 @@
     states: { months, headingValue, daysOfWeek, segmentContents, open },
     helpers: { isDateDisabled, isDateUnavailable },
   } = createDateRangePicker({
+    minValue: new CalendarDate(todaysDate.year, todaysDate.month, todaysDate.day),
+    maxValue: new CalendarDate(todaysDate.year + 1, todaysDate.month, todaysDate.day),
     forceVisible: true,
     fixedWeeks: true,
     numberOfMonths: mobileCalendar,
@@ -94,7 +100,7 @@
     </div>
 
 
-<div class="picker-container fixed md:bottom-16 bottom-0 scale-110">
+<div class="picker-container fixed md:bottom-16 bottom-0 scale-110 flex justify-center">
   <div>
     <span use:melt={$label}>Date</span>
     <div use:melt={$field}>
@@ -117,7 +123,7 @@
     </div>
   </div>
   {#if $open}
-    <div transition:fade={{ duration: 100 }} use:melt={$content}>
+    <div transition:fade={{ duration: 250 }} use:melt={$content}>
       <div use:melt={$calendar}>
         <header>
           <button use:melt={$prevButton}>
