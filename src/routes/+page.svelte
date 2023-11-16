@@ -9,11 +9,9 @@
 
 	export let data: PageData;
 
-	console.log(data.booked[0]);
 	const bookedDates: string[] = [];
 
 	data.booked?.forEach((bookedEntry) => {
-		console.log('hi');
 		let bookedDate = parseDate(bookedEntry.start);
 		const bookedDateEnd = parseDate(bookedEntry.end);
 		while (bookedDateEnd.compare(bookedDate) != 0) {
@@ -23,9 +21,8 @@
 		bookedDates.push(bookedDateEnd.toString());
 	});
 
-	console.log({ bookedDates });
-
 	let mobileCalendar: number = 1;
+  let bookButtonEnabled: boolean = false;
 
 	if (browser) {
 		mobileCalendar = window.innerWidth < 500 ? 1 : 2;
@@ -42,7 +39,6 @@
 			field,
 			grid,
 			heading,
-			label,
 			nextButton,
 			prevButton,
 			startSegment,
@@ -57,17 +53,17 @@
 		forceVisible: true,
 		fixedWeeks: true,
 		numberOfMonths: mobileCalendar,
+    onValueChange: switchBookButton,
 		isDateUnavailable: (date) => {
-			// console.log({date});
 			return bookedDates.includes(date.toString());
-		}
+		},
 	});
 
-	function makeBookedDatesUnavailable(date) {
-		return date;
-	}
-
-	let isMobile: boolean = false;
+  function switchBookButton({ curr, next }) {
+      console.log(next);
+      bookButtonEnabled = next.end && next.start ? true : false;
+      return next;
+    }
 
 	function handleScroll(event): void {
 		const scrollAmount = event.deltaY;
@@ -91,7 +87,6 @@
 			class="flex overflow-x-auto snap-type-mandatory h-1/2 object-cover bg-scroll scrollbar-hide image-container"
 		>
 			<div class="flex-shrink-0 w-full snap-align-start">
-				<!-- First image -->
 				<img
 					src="https://plus.unsplash.com/premium_photo-1684508638760-72ad80c0055f?q=80&w=3542&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
 					alt="unsplash"
@@ -100,7 +95,6 @@
 			</div>
 
 			<div class="flex-shrink-0 w-full snap-align-start">
-				<!-- Second image -->
 				<img
 					src="https://plus.unsplash.com/premium_photo-1684338795288-097525d127f0?q=80&w=1742&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
 					alt="unsplash"
@@ -109,7 +103,6 @@
 			</div>
 
 			<div class="flex-shrink-0 w-full snap-align-start">
-				<!-- Third image -->
 				<img
 					src="https://plus.unsplash.com/premium_photo-1661962841993-99a07c27c9f4?q=80&w=1631&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
 					alt="unsplash"
@@ -118,7 +111,6 @@
 			</div>
 
 			<div class="flex-shrink-0 w-full snap-align-start">
-				<!-- Fourth image -->
 				<img
 					src="https://plus.unsplash.com/premium_photo-1661876449499-26de7959878f?q=80&w=1674&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
 					alt="unsplash"
@@ -127,9 +119,8 @@
 			</div>
 		</div>
 
-		<div class="picker-container fixed md:bottom-16 bottom-0 scale-110 flex justify-center">
+		<div class="picker-container fixed md:bottom-16 lg:bottom-24 bottom-8 scale-110 flex justify-center">
 			<div>
-				<span use:melt={$label}>Date</span>
 				<div use:melt={$field}>
 					{#each $segmentContents.start as seg}
 						<div use:melt={$startSegment(seg.part)}>
@@ -199,11 +190,17 @@
 					</div>
 				</div>
 			{/if}
-			<button
-				class="m-3 text-xl text-gray-800/70 hover:text-gray-900/80 font-semibold"
-				on:click={() => dbController.postDates($value.start?.toString(), $value.end?.toString())}
-				>Book now</button
-			>
+			<div style="text-center">
+        <div style="opacity: {bookButtonEnabled ? 1 : 0}; transition: opacity 1.25s;">
+            <button
+                class="m-3 text-xl text-gray-800/80 hover:text-gray-900/80 font-semibold"
+                disabled={!bookButtonEnabled}
+                on:click={() => dbController.postDates($value.start?.toString(), $value.end?.toString())}
+            >
+                Book now
+            </button>
+        </div>
+    </div>
 		</div>
 	</div>
 </div>
