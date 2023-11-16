@@ -53,7 +53,7 @@
 		numberOfMonths: mobileCalendar,
 		onValueChange: switchBookButton,
 		isDateUnavailable: (date) => {
-			return bookedDates.includes(date.toString());
+			return bookedDates.includes(date.toString()) && date.compare(todaysDate) >= 0;
 		}
 	});
 
