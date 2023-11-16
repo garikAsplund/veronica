@@ -4,7 +4,13 @@
 	import { ChevronRight, ChevronLeft, Calendar } from 'lucide-svelte';
 	import { fade } from 'svelte/transition';
 	import { browser } from '$app/environment';
-	import { CalendarDate, today, getLocalTimeZone, parseDate, type DateValue } from '@internationalized/date';
+	import {
+		CalendarDate,
+		today,
+		getLocalTimeZone,
+		parseDate,
+		type DateValue
+	} from '@internationalized/date';
 	import type { PageData } from '../../routes/$types';
 	import { writable } from 'svelte/store';
 
@@ -59,6 +65,8 @@
 		}
 	});
 
+	export const dates = writable($value);
+
 	function switchBookButton({ curr, next }) {
 		bookButtonEnabled = next.end && next.start ? true : false;
 		return next;
@@ -76,15 +84,18 @@
 	}
 
 	async function checkout() {
-		// dbController.postDates($value.start?.toString(), $value.end?.toString());
 		$lengthOfStay = calculateLengthOfStay($value.start, $value.end);
-	
-		const data = await fetch("/checkout", {
-			method: "POST",
+
+		const data = await fetch('/checkout', {
+			method: 'POST',
 			headers: {
-				"Content-Type": "application/json",
+				'Content-Type': 'application/json'
 			},
-			body: JSON.stringify({ items: $lengthOfStay })
+			body: JSON.stringify({
+				items: $lengthOfStay,
+				start: $value.start?.toString(),
+				end: $value.end?.toString()
+			})
 		}).then((data) => data.json());
 
 		window.location.replace(data.url);
