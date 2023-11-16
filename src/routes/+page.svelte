@@ -4,7 +4,15 @@
   import { fade } from 'svelte/transition';
   import { browser } from '$app/environment';
 
-  const {
+  let mobileCalendar;
+
+  if (browser) {
+      // window.innerWidth < 500 ? mobileCalendar = 1 : mobileCalendar = 2;
+      mobileCalendar = window.innerWidth < 500 ? 1 : 2;
+      document.addEventListener('wheel', handleScroll);
+    }
+  
+    const {
     elements: {
       calendar,
       cell,
@@ -24,8 +32,10 @@
   } = createDateRangePicker({
     forceVisible: true,
     fixedWeeks: true,
-    numberOfMonths: 2,
+    numberOfMonths: mobileCalendar,
   });
+
+  let isMobile = false;
 
   function handleScroll(event) {
     const scrollAmount = event.deltaY;
@@ -36,9 +46,7 @@
     }
   }
 
-  if (browser) {
-    document.addEventListener('wheel', handleScroll);
-  }
+  
 </script>
 
 <div class="fixed inset-0 overflow-hidden">
@@ -86,7 +94,7 @@
     </div>
 
 
-<div class="picker-container fixed bottom-16 scale-110 flex">
+<div class="picker-container fixed md:bottom-16 bottom-0 scale-110">
   <div>
     <span use:melt={$label}>Date</span>
     <div use:melt={$field}>
