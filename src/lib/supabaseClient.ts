@@ -1,10 +1,9 @@
 import { createClient } from '@supabase/supabase-js';
 import type { CalendarDate } from '@internationalized/date';
 
-export const supabase = createClient(
-	'https://bptvrjgppvpqzdwcshed.supabase.co',
-	'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJwdHZyamdwcHZwcXpkd2NzaGVkIiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTkwNDkxMjUsImV4cCI6MjAxNDYyNTEyNX0.2OOGe1fq3qls7B5ZRmHbUng9_mGoEGdSvazr4EcUgtE'
-);
+const { VITE_DB_PROJECT_URL, VITE_DB_API_KEY } = import.meta.env;
+
+export const supabase = createClient(VITE_DB_PROJECT_URL, VITE_DB_API_KEY);
 
 export const dbController = {
 	async postDates(start: CalendarDate, end: CalendarDate) {
