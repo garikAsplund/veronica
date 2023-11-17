@@ -2,8 +2,7 @@ import { stripe } from '../stripe';
 import type { RequestHandler } from '@sveltejs/kit';
 import { dbController } from '$lib/supabaseClient';
 
-const WEBHOOK_SECRET: string =
-	'whsec_459f18d7e9caefb6e29246aec9373a5e8ad079c3836f908572a46e85062d3b64';
+const VITE_WEBHOOK_SECRET: string = import.meta.env;
 
 function toBuffer(ab: ArrayBuffer): Buffer {
 	const buf = Buffer.alloc(ab.byteLength);
@@ -24,21 +23,15 @@ export const POST: RequestHandler = async ({ request }) => {
 
 	const signature = request.headers.get('stripe-signature');
 
-	const event = stripe.webhooks.constructEvent(payload, signature, WEBHOOK_SECRET);
+	const event = stripe.webhooks.constructEvent(payload, signature, VITE_WEBHOOK_SECRET);
 	const data = event.data;
 
 	switch (event.type) {
 		case 'checkout.session.completed':
-			for (const key in data) {
-				console.log({ key }, data[key]);
-			}
-			console.log(`It went through!`);
-			customerName = data.object.customer_details.name.split(' ')[0];
-			console.log(`Thank you, ${customerName}`);
 			dbController.postDates(data.object.metadata.start, data.object.metadata.end);
 			break;
 		default:
-			console.log('Something went wrong, I think');
+			console.log(`Unhandled event type ${event.type}`);
 	}
 
 	return new Response(JSON.stringify({ received: true }), {
