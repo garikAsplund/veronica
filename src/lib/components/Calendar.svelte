@@ -1,5 +1,4 @@
 <script lang="ts">
-	import { dbController } from '$lib/supabaseClient';
 	import { createDateRangePicker, melt } from '@melt-ui/svelte';
 	import { ChevronRight, ChevronLeft, Calendar } from 'lucide-svelte';
 	import { fade } from 'svelte/transition';
@@ -9,7 +8,6 @@
 		today,
 		getLocalTimeZone,
 		parseDate,
-		type DateValue
 	} from '@internationalized/date';
 	import type { PageData } from '../../routes/$types';
 	import { writable } from 'svelte/store';
@@ -313,13 +311,6 @@
 	[data-melt-calendar-cell][data-outside-month] {
 		@apply pointer-events-none cursor-default opacity-0 hover:bg-transparent;
 	} /* ... other styles ... */
-
-	.h1 {
-		@apply text-center font-extrabold  text-transparent m-12;
-		background-clip: text;
-		animation: hueShift 60s infinite linear;
-		/* You can adjust the animation duration and other properties as needed */
-	}
 
 	@keyframes hueShift {
 		0% {

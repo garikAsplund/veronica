@@ -18,3 +18,20 @@
 		<Calendar {data} />
 	</div>
 </div>
+
+<style lang="postcss">
+	.h1 {
+		@apply text-center font-extrabold  text-transparent m-12;
+		background-clip: text;
+		animation: hueShift 60s infinite linear;
+	}
+
+	@keyframes hueShift {
+		0% {
+			filter: hue-rotate(0deg);
+		}
+		100% {
+			filter: hue-rotate(360deg);
+		}
+	}
+</style>
