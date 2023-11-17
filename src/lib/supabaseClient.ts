@@ -1,9 +1,9 @@
 import { createClient } from '@supabase/supabase-js';
 import type { CalendarDate } from '@internationalized/date';
 
-const { VITE_DB_PROJECT_URL, VITE_DB_API_KEY } = import.meta.env;
+const { VITE_DB_PROJECT_URL, VITE_DB_API_KEY, VITE_DB_SECRET_KEY } = import.meta.env;
 
-export const supabase = createClient(VITE_DB_PROJECT_URL, VITE_DB_API_KEY);
+export const supabase = createClient(VITE_DB_PROJECT_URL, VITE_DB_SECRET_KEY);
 
 export const dbController = {
 	async postDates(start: CalendarDate, end: CalendarDate) {
