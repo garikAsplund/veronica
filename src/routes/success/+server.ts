@@ -2,7 +2,7 @@ import { stripe } from '../stripe';
 import type { RequestHandler } from '@sveltejs/kit';
 import { dbController } from '$lib/supabaseClient';
 
-const VITE_WEBHOOK_SECRET: string = import.meta.env;
+const { VITE_WEBHOOK_SECRET } = import.meta.env;
 
 function toBuffer(ab: ArrayBuffer): Buffer {
 	const buf = Buffer.alloc(ab.byteLength);

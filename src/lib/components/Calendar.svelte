@@ -3,12 +3,7 @@
 	import { ChevronRight, ChevronLeft, Calendar } from 'lucide-svelte';
 	import { fade } from 'svelte/transition';
 	import { browser } from '$app/environment';
-	import {
-		CalendarDate,
-		today,
-		getLocalTimeZone,
-		parseDate,
-	} from '@internationalized/date';
+	import { CalendarDate, today, getLocalTimeZone, parseDate } from '@internationalized/date';
 	import type { PageData } from '../../routes/$types';
 	import { writable } from 'svelte/store';
 
