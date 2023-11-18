@@ -4,14 +4,13 @@
 	import { fade } from 'svelte/transition';
 	import { browser } from '$app/environment';
 	import { CalendarDate, today, getLocalTimeZone, parseDate } from '@internationalized/date';
-	import type { PageData } from '../../routes/$types';
 	import { writable } from 'svelte/store';
+	import { page } from '$app/stores';
 
-	export let data: PageData;
 	const bookedDates: string[] = [];
 	export const lengthOfStay = writable(0);
 
-	data.booked?.forEach((bookedEntry) => {
+	$page.data.booked?.forEach((bookedEntry) => {
 		let bookedDate = parseDate(bookedEntry.start);
 		const bookedDateEnd = parseDate(bookedEntry.end);
 		while (bookedDateEnd.compare(bookedDate) != 0) {

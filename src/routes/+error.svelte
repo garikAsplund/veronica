@@ -1,6 +1,5 @@
 <script lang="ts">
 	import { page } from '$app/stores';
-	import { goto } from '$app/navigation';
 </script>
 
 <div class="min-h-screen flex items-center justify-center -translate-y-1/4">

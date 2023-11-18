@@ -1,5 +1,7 @@
-<script>
+<script lang="ts">
 	import '../app.css';
+	import Calendar from '$lib/components/Calendar.svelte';
+	import { page } from '$app/stores';
 </script>
 
 <div class="fixed inset-0 overflow-hidden">
@@ -17,6 +19,9 @@
 			</div>
 		</div>
 		<slot />
+		{#if $page.data.route.id !== '/success'}
+			<Calendar />
+		{/if}
 	</div>
 </div>
 
