@@ -6,32 +6,5 @@
 	export let data: PageData;
 </script>
 
-<div class="fixed inset-0 overflow-hidden">
-	<div class="flex-col align-middle justify-center h-screen w-screen">
-		<h1
-			class="h1 text-center font-extrabold text-transparent lg:text-8xl md:text-6xl text-4xl bg-clip-text bg-gradient-to-r from-teal-400 to-cyan-400 m-12"
-		>
-			Veronica's 3rd Home
-		</h1>
-
-		<Images />
-		<Calendar {data} />
-	</div>
-</div>
-
-<style lang="postcss">
-	.h1 {
-		@apply text-center font-extrabold  text-transparent m-12;
-		background-clip: text;
-		animation: hueShift 60s infinite linear;
-	}
-
-	@keyframes hueShift {
-		0% {
-			filter: hue-rotate(0deg);
-		}
-		100% {
-			filter: hue-rotate(360deg);
-		}
-	}
-</style>
+<Images />
+<Calendar {data} />
