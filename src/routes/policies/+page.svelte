@@ -3,7 +3,7 @@
 
 <div class="flex flex-col justify-center items-center mt-12">
 	
-	<div class="w-2/3 text-gray-700 text-center overflow-y-auto max-h-96">
+	<div class="w-2/3 text-gray-700 dark:text-gray-300 text-center overflow-y-auto max-h-96">
 		
 		Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas urna lacus, gravida nec risus sed, egestas tristique nulla. Nam convallis nisl quis facilisis aliquet. Nulla sagittis non ante nec iaculis. Vestibulum iaculis pretium nisl nec aliquet. Duis tempor ligula et lectus tempus, in auctor quam posuere. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Pellentesque vitae nulla quis eros eleifend mattis a eget mi. Aliquam erat volutpat. Donec sit amet neque at nisi mattis accumsan quis in risus. Donec et nunc vel tortor sagittis consectetur. Cras enim nunc, maximus pharetra sagittis a, bibendum nec nulla. In hac habitasse platea dictumst. Mauris vel condimentum enim, sit amet vestibulum quam. Vivamus eu metus orci. Etiam vestibulum mauris at imperdiet sagittis. Praesent euismod et sem ac suscipit.
 

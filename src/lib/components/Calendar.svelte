@@ -170,7 +170,7 @@
 	<div style="text-center">
 		<div style="opacity: {bookButtonEnabled ? 1 : 0}; transition: opacity 1.25s;">
 			<button
-				class="m-3 text-xl text-gray-800/80 hover:text-gray-900/80 font-semibold"
+				class="m-3 text-xl text-gray-800/80 dark:text-gray-300/80 dark:hover:text-gray-200/90 hover:text-gray-900/80 font-semibold"
 				disabled={!bookButtonEnabled}
 				on:click={checkout}
 			>
@@ -206,7 +206,7 @@
 	}
 
 	[data-melt-datefield-field] {
-		@apply mt-1.5 flex w-full min-w-[200px] items-center rounded-lg border border-cyan-400/60 bg-neutral-200/40 p-1.5 text-gray-700;
+		@apply mt-1.5 flex w-full min-w-[200px] items-center rounded-lg border border-cyan-400/60 bg-neutral-200/40 dark:bg-gray-700/70 p-1.5 dark:text-gray-300 text-gray-700;
 		animation: hueShift 60s infinite linear;
 	}
 
@@ -227,7 +227,7 @@
 	}
 
 	[data-melt-calendar] {
-		@apply w-full rounded-lg bg-white/90 p-3 text-gray-700 shadow-sm;
+		@apply w-full rounded-lg bg-white/90 dark:bg-gray-800/90 p-3 dark:text-gray-300 text-gray-700 shadow-sm;
 	}
 
 	header {
