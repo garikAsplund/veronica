@@ -11,7 +11,7 @@
 		>
 			<a href="/">Veronica's Rental</a>
 		</h1>
-		<div class=" align-top">
+		<div class="align-top">
 			<div class="flex w-1/2 mx-auto mb-2 justify-around text-gray-400">
 				<a href="/about" class="px-6 py-2 hover:border-gray-600 hover:text-gray-600 dark:hover:text-gray-300">About</a>
 				<a data-sveltekit-preload-data="hover" href="/location" class="px-6 py-2 hover:border-gray-600 hover:text-gray-600 dark:hover:text-gray-300">Location</a>
