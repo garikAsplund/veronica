@@ -9,7 +9,7 @@
 		<h1
 			class="h1 text-center font-extrabold text-transparent lg:text-8xl md:text-6xl text-4xl bg-clip-text bg-gradient-to-r from-teal-400 to-cyan-400 m-12"
 		>
-			<a href="/">Veronica's 3rd Home</a>
+			<a href="/">Veronica's Rental</a>
 		</h1>
 		<div class=" align-top">
 			<div class="flex w-1/2 mx-auto mb-2 justify-around text-gray-400">

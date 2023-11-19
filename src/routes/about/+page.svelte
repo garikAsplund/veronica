@@ -6,5 +6,6 @@
 		<div class="text-3xl">This is a house.</div>
 		<div class="text-xl">It has an A side and a B side, just like a record.</div>
 		<div>It's in Wallowa County, so that's cool.</div>
+		<div class="text-sm">And maybe chickens still live here?</div>
 	</div>
 </div>
